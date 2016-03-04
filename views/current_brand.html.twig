@@ -5,28 +5,28 @@
     {% include 'partials/nav.html'%}
     <main>
         <div class="container">
-            {% if stores is not empty %}
-            <h1>Stores:</h1>
+            <h1>{{store.getName}}</h1>
             <hr>
+            {% if stores is not empty %}
+            <h4> Stores that carry {{ brand.getName }}</h4>
             <ul>
             {% for store in stores %}
                 <li><a href="/store/{{ store.getId }}">{{ store.getName }}</a></li>
+                <form action="/brand/{{ brand.getId }}/store/{{ store.getId }}/delete" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button type="submit" class="btn icon-btn"><i class="fa fa-times"></i></button>
+                </form>
             {% endfor %}
-            {% endif %}
             </ul>
-            <h4>Add stores to your list!</h4>
+            {% endif %}
+            <h5>Add stores that carry {{ brand.getName }}</h5>
             <div class="row">
-                <form class="col s12" action="/add_store" method="post">
+                <form class="col s12" action="/brand/{{ brand.getId }}/add_store" method="post">
                     <div class="input-field col s12">
                         <label for="name">Store Name:</label>
                         <input type="text" name="name">
                     </div>
                     <button type="submit" class="btn waves-effect waves-light">Add</button>
-                </form>
-
-                <form class="col s12" action="/delete_stores" method="post">
-                    <input name="_method" type="hidden" value="delete">
-                    <button type="submit" class="btn waves-effect waves-light">Delete All</button>
                 </form>
             </div>
         </div>

@@ -5,8 +5,29 @@
     {% include 'partials/nav.html'%}
     <main>
         <div class="container">
+            {% if brands is not empty %}
             <h1>Brands:</h1>
             <hr>
+            <ul>
+            {% for brand in brands %}
+                <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
+            {% endfor %}
+            {% endif %}
+            </ul>
+            <h4>Add brands to your list!</h4>
+            <div class="row">
+                <form class="col s12" action="/add_brand" method="post">
+                    <div class="input-field col s12">
+                        <label for="name">Brand Name:</label>
+                        <input type="text" name="name">
+                    </div>
+                    <button type="submit" class="btn waves-effect waves-light">Add</button>
+                </form>
+                <form class="col s12" action="/delete_brands" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button type="submit" class="btn waves-effect waves-light">Delete All</button>
+                </form>
+            </div>
         </div>
     </main>
 

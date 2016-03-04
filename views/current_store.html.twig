@@ -11,7 +11,12 @@
             <h5> Brands available at {{store.getName}}:</h5>
             <ul>
             {% for brand in brands %}
-                <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
+                <li>
+                    <h5><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a>
+                    <form action="/brand/{{ brand.getId }}/delete" method="post">
+                        <button type="submit" class="btn icon-btn"><i class="fa fa-times"></i></button>
+                    </form></h5>
+                </li>
             {% endfor %}
             </ul>
             {% endif %}
