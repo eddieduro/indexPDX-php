@@ -39,8 +39,10 @@
     // Current Store
     $app->get("/store/{id}", function($id) use($app){
         $current_store = Store::find($id);
+
         return $app['twig']->render("current_store.html.twig", array(
-            'store' => $current_store
+            'store' => $current_store,
+            'brands' => $current_store->getBrands()
         ));
     });
 
