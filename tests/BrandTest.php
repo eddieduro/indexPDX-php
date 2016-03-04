@@ -101,5 +101,22 @@
             $this->assertEquals([], $result);
         }
 
+        function test_addStore(){
+            // Arrange
+            $name1 = "adidas store";
+            $new_store1 = new Store($name1);
+            $new_store1->save();
+
+            // Act
+            $brand_name = "adidas";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+
+            $new_brand->addStore($new_store1);
+
+            // Assert
+            $this->assertEquals($new_brand->getstores(), [$new_store1]);
+        }
+
     }
 ?>
