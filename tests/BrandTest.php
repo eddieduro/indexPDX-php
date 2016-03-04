@@ -34,6 +34,7 @@
             $name = "yeezy";
             $new_brand = new Brand($name);
             $new_brand->save();
+
             // Act
             $result = Brand::getAll();
 
@@ -50,6 +51,7 @@
             $name2 = "jordan";
             $new_brand2 = new Brand($name2);
             $new_brand2->save();
+
             // Act
             $result = Brand::getAll();
 
@@ -62,11 +64,28 @@
             $name1 = "nike";
             $new_brand = new Brand($name1);
             $new_brand->save();
+
             // Act
             Brand::deleteAll();
+
             // Assert
             $result = Brand::getAll();
             $this->assertEquals([], $result);
+        }
+
+        function test_updateName(){
+            // Arrange
+            $name1 = "nike";
+            $new_brand = new Brand($name1);
+            $new_brand->save();
+
+            // Act
+            $new_name = 'jordan';
+            $new_brand->updateName($new_name);
+            $result = $new_brand->getName();
+
+            // Assert
+            $this->assertEquals('jordan', $result);
         }
 
     }

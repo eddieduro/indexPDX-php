@@ -13,6 +13,10 @@ class Brand
       return $this->name;
     }
 
+    function setName($new_name){
+      $this->name = (string) $new_name;
+    }
+
     function getId(){
       return $this->name;
     }
@@ -22,6 +26,10 @@ class Brand
       $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function updateName($new_name){
+      $GLOBALS['DB']->exec("UPDATE brands SET name = '{$new_name}' WHERE id = {$this->getId()};");
+      $this->setName($new_name);
+    }
     static function getAll(){
       $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
       $brands = array();
