@@ -121,8 +121,25 @@
 			$brands = $new_store1->getBrands();
 			// Assert
 
-
 			$this->assertEquals($result = $new_store1->findBrand($brand_name), $new_brand);
 		}
+
+        function test_deleteStore(){
+            // Arrange
+            $name1 = "adidas store";
+            $new_store1 = new Store($name1);
+            $new_store1->save();
+
+            $name2 = "indexPDX";
+            $new_store2 = new Store($name2);
+            $new_store2->save();
+
+            // Act
+            $new_store1->delete();
+            $result = Store::getAll();
+
+            // Assert
+            $this->assertEquals([$new_store2], $result);
+        }
     }
 ?>

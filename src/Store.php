@@ -75,8 +75,12 @@ class Store
         return $found_brands;
     }
 
+    function delete(){
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+    }
+
     static function deleteAll(){
-      $GLOBALS['DB']->exec('DELETE FROM stores');
+      $GLOBALS['DB']->exec("DELETE FROM stores");
     }
 }
 ?>
