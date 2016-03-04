@@ -62,6 +62,19 @@ class Store
       return $stores;
     }
 
+    function findBrand($searched_brand){
+        $found_brands = null;
+        $brands = Brand::getAll();
+
+        foreach($brands as $brand){
+            $brand_name = $brand->getName();
+            if($searched_brand == $brand_name){
+                $found_brands = $brand;
+            }
+        }
+        return $found_brands;
+    }
+
     static function deleteAll(){
       $GLOBALS['DB']->exec('DELETE FROM stores');
     }
