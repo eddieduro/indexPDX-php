@@ -18,7 +18,7 @@ class Brand
     }
 
     function getId(){
-      return $this->name;
+      return $this->id;
     }
 
     function save(){

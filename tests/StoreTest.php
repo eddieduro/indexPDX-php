@@ -6,6 +6,7 @@
     */
 
     require_once 'src/Store.php';
+    require_once 'src/Brand.php';
 
     $server = 'mysql:host=localhost;dbname=shoes_test';
     $user = 'root';
@@ -44,7 +45,7 @@
 
         function test_getAll(){
             // Arrange
-            $name1 = "adidas";
+            $name1 = "adidas store";
             $new_store1 = new Store($name1);
             $new_store1->save();
 
@@ -61,7 +62,7 @@
 
         function test_deleteAll(){
             // Arrange
-            $name1 = "nike";
+            $name1 = "nike store";
             $new_store = new Store($name1);
             $new_store->save();
 
@@ -75,7 +76,7 @@
 
         function test_updateName(){
             // Arrange
-            $name1 = "nike";
+            $name1 = "nike store";
             $new_store = new Store($name1);
             $new_store->save();
 
@@ -86,6 +87,23 @@
 
             // Assert
             $this->assertEquals('indexPDX', $result);
+        }
+
+        function test_addBrand(){
+            // Arrange
+            $name1 = "adidas store";
+            $new_store1 = new Store($name1);
+            $new_store1->save();
+
+            // Act
+            $brand_name = "adidas";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+
+            $new_store1->addBrand($new_brand);
+
+            // Assert
+            $this->assertEquals($new_store1->getBrands(), [$new_brand]);
         }
 
     }
