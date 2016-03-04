@@ -42,6 +42,10 @@ class Brand
       return $brands;
     }
 
+    function delete(){
+          $GLOBALS['DB']->exec("DELETE FROM brands WHERE id = {$this->getId()};");
+      }
+
     static function deleteAll(){
       $GLOBALS['DB']->exec('DELETE FROM brands');
     }

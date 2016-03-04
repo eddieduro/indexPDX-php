@@ -141,5 +141,23 @@
             // Assert
             $this->assertEquals([$new_store2], $result);
         }
+
+        function test_deleteBrand(){
+            // Arrange
+            $name1 = "adidas store";
+            $new_store1 = new Store($name1);
+            $new_store1->save();
+
+            $brand_name = "adidas";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+            $new_store1->addBrand($new_brand);
+
+            // Act
+            $new_brand->delete();
+
+            // Assert
+            $this->assertEquals($new_store1->getBrands(), []);
+        }
     }
 ?>
