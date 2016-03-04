@@ -61,6 +61,18 @@ body {
             padding-left: 0px;
         }
     }
+    .edit-name{
+        h1{
+            display: inline-block;
+        }
+        span{
+            display: inline-block;
+            margin-left: 30px;
+        }
+        i {
+            font-size: 30px;
+        }
+    }
 }
 
 form{

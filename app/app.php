@@ -63,6 +63,15 @@
         ));
     });
 
+    $app->delete("/store/{id}/brand/{brand_id}/delete", function($id, $brand_id) use ($app){
+        $current_store = Store::find($id);
+        $current_brand = Brand::find($brand_id);
+        $current_brand->delete();
+        return $app['twig']->render("current_store.html.twig", array(
+            'store' => $current_store,
+            'brands' => $current_store->getBrands()
+        ));
+    });
 
     // Brands
     $app->get("/brands", function() use($app){

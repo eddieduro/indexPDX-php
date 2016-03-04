@@ -49,6 +49,16 @@ body main {
     padding-left: 0px;
   }
 }
+body .edit-name h1 {
+  display: inline-block;
+}
+body .edit-name span {
+  display: inline-block;
+  margin-left: 30px;
+}
+body .edit-name i {
+  font-size: 30px;
+}
 form .add-btn {
   width: 147px;
 }

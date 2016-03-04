@@ -5,13 +5,16 @@
     {% include 'partials/nav.html'%}
     <main>
         <div class="container">
-            <h1>{{brand.getName}}</h1>
+            <div class="edit-name">
+                <h1>{{brand.getName}}</h1>
+                <span><a href="/brand/{{ brand.getId }}/edit"><i class="fa fa-pencil"></i></a></span>
+            </div>
             <hr>
             {% if stores is not empty %}
             <h4> Stores that carry {{ brand.getName }}</h4>
             <ul>
             {% for store in stores %}
-                <li><a href="/store/{{ store.getId }}">{{ store.getName }}</a></li>
+                <li><h5><a href="/store/{{ store.getId }}">{{ store.getName }}</a></h5></li>
                 <form action="/brand/{{ brand.getId }}/store/{{ store.getId }}/delete" method="post">
                     <input name="_method" type="hidden" value="delete">
                     <button type="submit" class="btn icon-btn"><i class="fa fa-times"></i></button>
