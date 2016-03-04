@@ -110,8 +110,8 @@
         $current_store = Store::find($store_id);
         $current_store->delete();
         return $app['twig']->render("current_brand.html.twig", array(
-            'store' => $current_store,
-            'brands' => $current_store->getBrands()
+            'brand' => $current_brand,
+            'stores' => $current_brand->getStores()
         ));
     });
 
