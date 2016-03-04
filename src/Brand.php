@@ -49,6 +49,19 @@ class Brand
       }
       return $stores;
     }
+
+    static function find($search_id){
+      $found_brands = null;
+        $brands = Brand::getAll();
+        foreach($brands as $brand){
+           $id = $brand->getId();
+           if($search_id == $id){
+               $found_brands = $brand;
+           }
+        }
+        return $found_brands;
+      }
+
     static function getAll(){
       $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
       $brands = array();

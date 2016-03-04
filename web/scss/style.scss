@@ -1,0 +1,64 @@
+$color_headline: #38a380;
+$links_color: #38a380;
+$accent_color: #09d391;
+$dark_color_theme: #262626;
+$background: white;
+
+.container {
+  h2 {
+    color: $color_headline;
+    text-align: center;
+  }
+}
+
+.btn{
+    background-color: $accent_color;
+}
+
+nav{
+    background-color: $dark_color_theme;
+    .search{
+        position: absolute;
+        top:120px;
+        width: 300px;
+        margin-left: -20px;
+        padding-left: 0;
+        #search {
+            position: absolute;
+        }
+        .card {
+            height: 40px;
+        }
+        .material-icons{
+            color:black;
+            line-height: 46px;
+        }
+        input:not([type]){
+            border-bottom: 0;
+        }
+        input:not([type]):focus:not([readonly]){
+            border-bottom: 0;
+            box-shadow: 0 0 0 0;
+        }
+    }
+
+    .sidebar-link{
+        margin-top:200px;
+    }
+}
+
+a {
+    color: $links_color;
+}
+
+body {
+    background-color: $background;
+    main{
+        padding-left: 240px;
+    }
+    @media only screen and (max-width: 992px){
+        main{
+            padding-left: 0px;
+        }
+    }
+}

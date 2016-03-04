@@ -1,0 +1,51 @@
+.container h2 {
+  color: #38a380;
+  text-align: center;
+}
+.btn {
+  background-color: #09d391;
+}
+nav {
+  background-color: #262626;
+}
+nav .search {
+  position: absolute;
+  top: 120px;
+  width: 300px;
+  margin-left: -20px;
+  padding-left: 0;
+}
+nav .search #search {
+  position: absolute;
+}
+nav .search .card {
+  height: 40px;
+}
+nav .search .material-icons {
+  color: black;
+  line-height: 46px;
+}
+nav .search input:not([type]) {
+  border-bottom: 0;
+}
+nav .search input:not([type]):focus:not([readonly]) {
+  border-bottom: 0;
+  box-shadow: 0 0 0 0;
+}
+nav .sidebar-link {
+  margin-top: 200px;
+}
+a {
+  color: #38a380;
+}
+body {
+  background-color: white;
+}
+body main {
+  padding-left: 240px;
+}
+@media only screen and (max-width: 992px) {
+  body main {
+    padding-left: 0px;
+  }
+}

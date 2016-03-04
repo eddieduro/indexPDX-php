@@ -81,6 +81,17 @@ class Store
       return $stores;
     }
 
+    static function find($search_id){
+        $found_stores = null;
+        $stores = Store::getAll();
+        foreach($stores as $store){
+           $id = $store->getId();
+           if($search_id == $id){
+               $found_stores = $store;
+           }
+        }
+        return $found_stores;
+    }
 
 
     static function deleteAll(){
