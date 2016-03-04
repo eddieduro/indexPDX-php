@@ -88,5 +88,18 @@
             $this->assertEquals('jordan', $result);
         }
 
+        function test_delete(){
+
+            $brand_name = "adidas";
+            $new_brand = new Brand($brand_name);
+            $new_brand->save();
+
+            // Act
+            $new_brand->delete();
+            $result = Brand::getAll();
+            // Assert
+            $this->assertEquals([], $result);
+        }
+
     }
 ?>
