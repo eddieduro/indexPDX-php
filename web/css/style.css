@@ -49,3 +49,6 @@ body main {
     padding-left: 0px;
   }
 }
+form .add-btn {
+  width: 147px;
+}
