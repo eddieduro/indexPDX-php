@@ -31,7 +31,7 @@
     });
 
     $app->post("/add_store", function() use($app){
-        $new_store = new Store($_POST['name']);
+        $new_store = new Store(ucwords($_POST['name']));
         $new_store->save();
         return $app['twig']->render("stores.html.twig", array(
             'stores' => Store::getAll()
@@ -65,7 +65,7 @@
 
     $app->post("/store/{id}/add_brand", function($id) use($app){
         $current_store = Store::find($id);
-        $new_brand = new Brand($_POST['name']);
+        $new_brand = new Brand(ucwords($_POST['name']));
         $new_brand->save();
         $current_store->addBrand($new_brand);
         return $app['twig']->render("current_store.html.twig", array(
