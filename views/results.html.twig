@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    {% include 'partials/head.html'%}
+    <body>
+    {% include 'partials/nav.html'%}
+    <main>
+        <div class="container">
+            {% if (stores is empty) and (brands is empty) %}
+            <h2>Sorry no results were found</h2>
+            {% else %}
+            <h2>Results:</h2>
+            <hr>
+            <ul>
+                {% for store in stores %}
+                <li><h5><a href="/store/{{ store.getId }}">{{ store.getName }}</a></h5></li>
+                {% endfor %}
+                {% for brand in brands %}
+                <li><h5><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></h5></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </main>
+    {% include 'partials/footer.html'%}
+    </body>
+</html>

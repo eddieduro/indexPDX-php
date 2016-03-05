@@ -32,6 +32,9 @@ nav .search input:not([type]):focus:not([readonly]) {
   border-bottom: 0;
   box-shadow: 0 0 0 0;
 }
+nav .search .input-field input {
+  color: black;
+}
 nav .sidebar-link {
   margin-top: 200px;
 }

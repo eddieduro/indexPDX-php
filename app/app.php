@@ -15,6 +15,8 @@
     ));
 
     use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\Debug\Debug;
+    Debug::enable();
     Request::enableHttpMethodParameterOverride();
 
     $app->get("/", function() use($app){
@@ -35,6 +37,15 @@
             'stores' => Store::getAll()
         ));
     });
+
+    $app->delete("/store/{id}/delete", function($id) use ($app){
+        $current_store = Store::find($id);
+        $current_store->delete();
+        return $app['twig']->render("stores.html.twig", array(
+            'stores' => Store::getAll()
+        ));
+    });
+    // delete all stores
 
     $app->delete("/delete_stores", function () use($app) {
         Store::deleteAll();
@@ -62,6 +73,26 @@
             'brands' => $current_store->getBrands()
         ));
     });
+    // Edit current store
+
+    $app->get("/store/{id}/edit", function($id) use($app){
+        $current_store = Store::find($id);
+        return $app['twig']->render("edit_store.html.twig", array(
+            'store' => $current_store,
+        ));
+    });
+
+    $app->patch("/store/{id}/edit", function($id) use($app){
+        $current_store = Store::find($id);
+        $new_name = ucwords($_POST['name']);
+        $current_store->updateName($new_name);
+        return $app['twig']->render("current_store.html.twig", array(
+            'store' => $current_store,
+            'brands' => $current_store->getBrands()
+        ));
+    });
+
+    // delete current store brand
 
     $app->delete("/store/{id}/brand/{brand_id}/delete", function($id, $brand_id) use ($app){
         $current_store = Store::find($id);
@@ -81,12 +112,21 @@
     });
 
     $app->post("/add_brand", function() use($app){
-        $new_brand = new Brand($_POST['name']);
+        $new_brand = new Brand(ucwords($_POST['name']));
         $new_brand->save();
         return $app['twig']->render("brands.html.twig", array(
             'brands' => Brand::getAll()
         ));
     });
+
+    $app->delete("/brand/{id}/delete", function($id) use ($app){
+        $current_brand = Brand::find($id);
+        $current_brand->delete();
+        return $app['twig']->render("brands.html.twig", array(
+            'brands' => Brand::getAll()
+        ));
+    });
+    // Delete all brands
 
     $app->delete("/delete_brands", function () use($app) {
         Brand::deleteAll();
@@ -105,7 +145,7 @@
 
     $app->post("/brand/{id}/add_store", function($id) use($app){
         $current_brand = Brand::find($id);
-        $new_store = new Store($_POST['name']);
+        $new_store = new Store(ucwords($_POST['name']));
         $new_store->save();
         $current_brand->addStore($new_store);
         return $app['twig']->render("current_brand.html.twig", array(
@@ -113,7 +153,7 @@
             'stores' => $current_brand->getStores()
         ));
     });
-
+    // delete store from current brand
     $app->delete("/brand/{id}/store/{store_id}/delete", function($id, $store_id) use ($app){
         $current_brand = Brand::find($id);
         $current_store = Store::find($store_id);
@@ -123,7 +163,30 @@
             'stores' => $current_brand->getStores()
         ));
     });
+    $app['debug'] = true;
+    $app->post("/search", function() use ($app){
+        $search_term = ucwords($_POST['search']);
+        $brands = Brand::getAll();
+        $stores = Store::getAll();
 
+        $returned_brands = array();
+        $returned_stores = array();
+        foreach($brands as $brand){
+            if($brand->getName() ==  $search_term){
+                array_push($returned_brands, $brand);
+            }
+        }
+        foreach($stores as $store){
+            if($store->getName() ==  $search_term){
+                array_push($returned_stores, $store);
+            }
+        }
+
+        return $app['twig']->render("results.html.twig", array(
+            'brands' => $returned_brands,
+            'stores' => $returned_stores
+        ));
+    });
 
     return $app;
 ?>

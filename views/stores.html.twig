@@ -11,6 +11,10 @@
             <ul>
             {% for store in stores %}
                 <li><h5><a href="/store/{{ store.getId }}">{{ store.getName }}</a></h5></li>
+                <form action="/store/{{ store.getId }}/delete" method="post">
+                    <input name="_method" type="hidden" value="delete">
+                    <button type="submit" class="btn icon-btn"><i class="fa fa-times"></i></button>
+                </form>
             {% endfor %}
             {% endif %}
             </ul>
