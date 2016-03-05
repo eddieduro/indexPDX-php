@@ -8,6 +8,13 @@
 nav {
   background-color: #262626;
 }
+nav img {
+  border: 0;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-left: 35px;
+}
 nav .search {
   position: absolute;
   top: 120px;
@@ -36,7 +43,7 @@ nav .search .input-field input {
   color: black;
 }
 nav .sidebar-link {
-  margin-top: 200px;
+  margin-top: 150px;
 }
 a {
   color: #38a380;
