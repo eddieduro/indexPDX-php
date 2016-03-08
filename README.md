@@ -46,7 +46,7 @@ To view, type "localhost:8000" in browser
 * Atom
 * Terminal
 * GitHub
-* Bootstrap
+* Materializecss
 * HTML
 * Legal
 MIT Licensed
